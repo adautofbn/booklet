@@ -12,12 +12,22 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { MaterialModule } from './material/material.component';
 import { LoginComponent } from './login/login.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment.prod';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { FirebaseService } from './_services/firebase.service';
 
 @NgModule({
   declarations: [AppComponent,
-  LoginComponent],
+    LoginComponent,
+    SignUpComponent],
   entryComponents: [],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
@@ -26,8 +36,9 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     StatusBar,
-    SplashScreen
+    SplashScreen,
+    FirebaseService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

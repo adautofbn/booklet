@@ -1,3 +1,55 @@
-<p>
-  sign-up works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <mat-card>
+    <mat-card-content>
+      <form>
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" formControlName="username" id="username" placeholder="Username" required />
+          </mat-form-field>
+        </div>
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput type="text" formControlName="name" id="name" placeholder="Nome" required />
+          </mat-form-field>
+        </div>
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput type="email" formControlName="email" id="email" placeholder="E-mail" required />
+          </mat-form-field>
+        </div>
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput type="password" id="password" formControlName="password" placeholder="Senha" required />
+          </mat-form-field>
+        </div>
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Confirme a senha</mat-label>
+            <input matInput type="password" id="passConfirm" formControlName="passConfirm"
+              placeholder="Confirme a senha" required />
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-card-actions fxFlexFill>
+      <button mat-raised-button routerLink="/login"  align="start" >
+        Voltar
+      </button>
+      <button mat-raised-button color='accent' align="end">
+          Cadastrar
+        </button>
+
+    </mat-card-actions>
+
+  </mat-card>
+</ion-content>
