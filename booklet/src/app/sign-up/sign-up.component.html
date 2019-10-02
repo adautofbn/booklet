@@ -7,19 +7,7 @@
 <ion-content>
   <mat-card>
     <mat-card-content>
-      <form>
-        <div fxFlexFill>
-          <mat-form-field appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput type="text" formControlName="username" id="username" placeholder="Username" required />
-          </mat-form-field>
-        </div>
-        <div fxFlexFill>
-          <mat-form-field appearance="outline">
-            <mat-label>Nome</mat-label>
-            <input matInput type="text" formControlName="name" id="name" placeholder="Nome" required />
-          </mat-form-field>
-        </div>
+      <form fxFlexFill [formGroup]="signUpForm">
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>E-mail</mat-label>
@@ -42,10 +30,10 @@
       </form>
     </mat-card-content>
     <mat-card-actions fxFlexFill>
-      <button mat-raised-button routerLink="/login"  align="start" >
+      <button mat-raised-button routerLink="/login"  align="start">
         Voltar
       </button>
-      <button mat-raised-button color='accent' align="end">
+      <button mat-raised-button color='accent' align="end" (click)="tryRegister()">
           Cadastrar
         </button>
 

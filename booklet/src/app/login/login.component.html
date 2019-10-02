@@ -7,26 +7,26 @@
   <ion-content>
       <mat-card>  
           <mat-card-content>
-            <form fxFlexFill>
+            <form fxFlexFill [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div fxFlexFill>
                 <mat-form-field appearance="outline">
                   <mat-label>E-mail</mat-label>
-                  <input matInput/>
+                  <input matInput type="email" formControlName="email" id="email" placeholder="E-mail" required/>
                 </mat-form-field>
               </div>
               <div fxFlexFill>
                 <mat-form-field appearance="outline">
                   <mat-label>Senha</mat-label>
-                  <input matInput/>
+                  <input matInput type="password" formControlName="password" id="password" placeholder="Senha" required/>
                 </mat-form-field>
               </div>
             </form>
           </mat-card-content>
-          <mat-card-actions>
+          <mat-card-actions align="center">
               <button mat-raised-button routerLink="/signup" color="primary">
                   Cadastre-se
                 </button>
-            <button mat-raised-button color="accent">
+            <button [disabled]="!loginForm.valid" mat-raised-button color="accent" (click)="onSubmit()">
               Login
             </button>
             <mat-progress-spinner mode="indeterminate" color="primary" *ngIf='loading'></mat-progress-spinner>

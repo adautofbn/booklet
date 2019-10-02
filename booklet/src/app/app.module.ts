@@ -18,11 +18,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { FirebaseService } from './_services/firebase.service';
+import { AuthService } from './_services/auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 @NgModule({
   declarations: [AppComponent,
     LoginComponent,
-    SignUpComponent],
+    SignUpComponent,
+    HomeComponent],
   entryComponents: [],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
@@ -31,13 +36,16 @@ import { FirebaseService } from './_services/firebase.service';
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    ReactiveFormsModule,
     IonicModule.forRoot(),
     AppRoutingModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    FirebaseService
+    FirebaseService,
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
