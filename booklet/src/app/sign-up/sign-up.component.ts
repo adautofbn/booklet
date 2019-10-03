@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,13 +22,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
     this.signUpForm = new FormGroup({
       username: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.minLength(6)
-      ])),
-
-      name: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.minLength(6)
+        Validators.required
       ])),
 
       email: new FormControl('', Validators.compose([
@@ -61,6 +56,7 @@ export class SignUpComponent implements OnInit {
     })
       .then(res => {
         console.log(res);
+        firebase.auth().currentUser.updateProfile({displayName: this.signUpForm.get('username').value});
         this.errorMessage = "";
         this.successMessage = "Your account has been created";
         this.router.navigateByUrl('/login');

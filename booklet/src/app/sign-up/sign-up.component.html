@@ -8,6 +8,12 @@
   <mat-card class="signup-card">
     <mat-card-content>
       <form fxFlexFill [formGroup]="signUpForm">
+          <div fxFlexFill>
+              <mat-form-field appearance="outline">
+                <mat-label>Nome de Usuário</mat-label>
+                <input matInput type="username" formControlName="username" id="username" placeholder="Nome de Usuário" required />
+              </mat-form-field>
+            </div>
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>E-mail</mat-label>
