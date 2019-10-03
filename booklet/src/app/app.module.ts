@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouteReuseStrategy } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -22,12 +21,16 @@ import { AuthService } from './_services/auth.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { MyPlansComponent } from './my-plans/my-plans.component';
+import { CreatePlanComponent } from './create-plan/create-plan.component';
 
 @NgModule({
   declarations: [AppComponent,
     LoginComponent,
     SignUpComponent,
-    HomeComponent],
+    HomeComponent,
+    MyPlansComponent,
+    CreatePlanComponent],
   entryComponents: [],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

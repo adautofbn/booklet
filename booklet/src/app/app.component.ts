@@ -14,8 +14,18 @@ export class AppComponent {
   public appPages = [
     {
       title: 'Página Inicial',
-      url: '/login',
+      url: '/home',
       icon: 'home'
+    },
+    {
+      title: 'Criar plano de aula',
+      url: '/create-plan',
+      icon: 'create'
+    },
+    {
+      title: 'Meus planos de aula',
+      url: '/my-plans',
+      icon: 'document'
     }
   ];
 

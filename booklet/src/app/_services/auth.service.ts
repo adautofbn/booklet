@@ -38,6 +38,7 @@ export class AuthService {
             if (firebase.auth().currentUser) {
                 this.afAuth.auth.signOut()
                 this.router.navigateByUrl('/login');
+                localStorage.removeItem('id_token')
                 resolve();
             }
             else {

@@ -27,6 +27,16 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink";
 
 .mat-card {
-    max-width: 90%;
-    max-height: 90%;
+    margin: 0 auto;
+    margin-top: 30%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.mat-progress-spinner {
+    margin: 0 auto;
+}
+
+.mat-form-field {
+    width: 100%;
 }
