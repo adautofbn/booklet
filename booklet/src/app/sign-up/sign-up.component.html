@@ -8,24 +8,28 @@
   <mat-card class="signup-card">
     <mat-card-content>
       <form fxFlexFill [formGroup]="signUpForm">
-          <div fxFlexFill>
-              <mat-form-field appearance="outline">
-                <mat-label>Nome de Usuário</mat-label>
-                <input matInput type="username" formControlName="username" id="username" placeholder="Nome de Usuário" required />
-              </mat-form-field>
-            </div>
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Nome de Usuário</mat-label>
+            <input matInput type="username" formControlName="username" id="username" placeholder="Nome de Usuário"
+              required />
+          </mat-form-field>
+        </div>
+        
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>E-mail</mat-label>
             <input matInput type="email" formControlName="email" id="email" placeholder="E-mail" required />
           </mat-form-field>
         </div>
+       
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Senha</mat-label>
             <input matInput type="password" id="password" formControlName="password" placeholder="Senha" required />
           </mat-form-field>
         </div>
+      
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Confirme a senha</mat-label>
@@ -35,15 +39,14 @@
         </div>
       </form>
     </mat-card-content>
-    <mat-card-actions fxFlexFill>
-      <button mat-raised-button routerLink="/login"  align="start">
+    <mat-card-actions fxFlexFill align="center">
+      <button mat-raised-button routerLink="/login">
         Voltar
       </button>
-      <button mat-raised-button color='accent' align="end" (click)="tryRegister()">
-          Cadastrar
-        </button>
 
+      <button mat-raised-button color='accent' (click)="tryRegister()">
+        Cadastrar
+      </button>
     </mat-card-actions>
-
   </mat-card>
 </ion-content>
