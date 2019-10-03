@@ -34,6 +34,10 @@ export class CreatePlanComponent implements OnInit {
     this.planCollectionRef = this.afs.collection('plans');
 
     this.planForm = new FormGroup({
+      title: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+
       class: new FormControl('', Validators.compose([
         Validators.required
       ])),
@@ -80,6 +84,7 @@ export class CreatePlanComponent implements OnInit {
     }
 
     var plan = {
+      title:this.planForm.get('title').value,
       class:this.planForm.get('class').value,
       subject:this.planForm.get('subject').value,
       school:this.planForm.get('school').value,
