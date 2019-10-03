@@ -24,6 +24,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { MyPlansComponent } from './my-plans/my-plans.component';
 import { CreatePlanComponent } from './create-plan/create-plan.component';
 import { AllPlansComponent } from './all-plans/all-plans.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [AppComponent,
@@ -32,7 +33,8 @@ import { AllPlansComponent } from './all-plans/all-plans.component';
     HomeComponent,
     MyPlansComponent,
     CreatePlanComponent,
-    AllPlansComponent],
+    AllPlansComponent,
+    CalendarComponent],
   entryComponents: [],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

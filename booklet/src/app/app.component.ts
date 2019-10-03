@@ -28,13 +28,13 @@ export class AppComponent {
       icon: 'ios-copy'
     },
     {
-      title: 'Todos planos de aula',
+      title: 'Todos os planos de aula',
       url: '/all-plans',
       icon: 'md-filing'
     },
     {
       title: 'Calendário',
-      url: '',
+      url: '/calendar',
       icon: 'md-calendar'
     }
   ];
