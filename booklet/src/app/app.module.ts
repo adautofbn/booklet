@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { MyPlansComponent } from './my-plans/my-plans.component';
 import { CreatePlanComponent } from './create-plan/create-plan.component';
+import { AllPlansComponent } from './all-plans/all-plans.component';
 
 @NgModule({
   declarations: [AppComponent,
@@ -30,11 +31,12 @@ import { CreatePlanComponent } from './create-plan/create-plan.component';
     SignUpComponent,
     HomeComponent,
     MyPlansComponent,
-    CreatePlanComponent],
+    CreatePlanComponent,
+    AllPlansComponent],
   entryComponents: [],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     BrowserModule,
     BrowserAnimationsModule,

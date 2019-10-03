@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Plan } from '../_models/plan.model';
 
 @Component({
   selector: 'app-create-plan',
@@ -12,6 +14,7 @@ export class CreatePlanComponent implements OnInit {
   planForm: FormGroup;
   successMessage: string;
   errorMessage: string;
+  planCollectionRef: AngularFirestoreCollection<Plan>;
 
   submitted = false;
 
@@ -23,10 +26,13 @@ export class CreatePlanComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private afs: AngularFirestore
   ) { }
 
   ngOnInit() {
+    this.planCollectionRef = this.afs.collection('plans');
+
     this.planForm = new FormGroup({
       class: new FormControl('', Validators.compose([
         Validators.required
@@ -82,8 +88,11 @@ export class CreatePlanComponent implements OnInit {
       script:this.planForm.get('script').value,
       materials:this.planForm.get('materials').value,
       evaluation:this.planForm.get('evaluation').value,
-      duration:this.planForm.get('duration').value
-    }
+      duration:this.planForm.get('duration').value,
+      teacher: this.authService.userDetails().displayName
+    } as Plan
+
+    this.planCollectionRef.add(plan);
 
     this.router.navigateByUrl('home');
   }

@@ -20,12 +20,22 @@ export class AppComponent {
     {
       title: 'Criar plano de aula',
       url: '/create-plan',
-      icon: 'create'
+      icon: 'ios-create'
     },
     {
       title: 'Meus planos de aula',
       url: '/my-plans',
-      icon: 'document'
+      icon: 'ios-copy'
+    },
+    {
+      title: 'Todos planos de aula',
+      url: '/all-plans',
+      icon: 'md-filing'
+    },
+    {
+      title: 'Calendário',
+      url: '',
+      icon: 'md-calendar'
     }
   ];
 
