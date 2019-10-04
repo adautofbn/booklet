@@ -9,6 +9,28 @@
   </ion-toolbar>
 </ion-header>
 
-<p>
-  my-plans works!
-</p>
+<ion-content>
+  <mat-card *ngFor="let plan of plan$ | async">
+    <mat-card-header>
+      <b>{{plan.title}}</b>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <h4 mat-line>Série</h4>
+          <h1 mat-subheader>{{plan.class}}</h1>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <h4 mat-line>Palavra Chave</h4>
+          <h1 mat-subheader>{{plan.keyword}}</h1>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+          <h4 mat-line>Professor(a)</h4>
+          <h1 mat-subheader>{{plan.teacher}}</h1>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</ion-content>
