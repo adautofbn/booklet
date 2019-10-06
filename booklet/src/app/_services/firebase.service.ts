@@ -18,7 +18,7 @@ export class FirebaseService {
         return result;
     }
 
-    retrieveDocsFiltered(collectionName, field, operator, matcher) {
+    retrieveFilteredDocs(collectionName, field, operator, matcher) {
         const result = this.afs.collection(collectionName,
             ref => ref.where(field, operator, matcher)).snapshotChanges().pipe(
                 map(actions => actions.map(a => {

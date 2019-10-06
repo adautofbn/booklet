@@ -4,6 +4,7 @@ import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Plan } from '../_models/plan.model';
+import { AlertService } from '../_services/alert.service';
 
 @Component({
   selector: 'app-create-plan',
@@ -26,6 +27,7 @@ export class CreatePlanComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private alertService: AlertService,
     private router: Router,
     private afs: AngularFirestore
   ) { }
@@ -100,6 +102,7 @@ export class CreatePlanComponent implements OnInit {
 
     this.planCollectionRef.add(plan);
 
+    this.alertService.success('Plano criado com sucesso!');
     this.router.navigateByUrl('home');
   }
 

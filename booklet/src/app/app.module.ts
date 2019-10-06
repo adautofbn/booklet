@@ -25,6 +25,7 @@ import { MyPlansComponent } from './my-plans/my-plans.component';
 import { CreatePlanComponent } from './create-plan/create-plan.component';
 import { AllPlansComponent } from './all-plans/all-plans.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { AlertService } from './_services/alert.service';
 
 @NgModule({
   declarations: [AppComponent,
@@ -52,6 +53,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     SplashScreen,
     FirebaseService,
     AuthService,
+    AlertService,
     AuthGuard
   ],
   bootstrap: [AppComponent]

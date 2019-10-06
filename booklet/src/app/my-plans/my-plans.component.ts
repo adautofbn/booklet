@@ -15,7 +15,7 @@ export class MyPlansComponent implements OnInit {
     private firebaseService: FirebaseService,
     private authService: AuthService
   ) { 
-    this.plan$ = this.firebaseService.retrieveDocsFiltered(
+    this.plan$ = this.firebaseService.retrieveFilteredDocs(
       'plans', 'uid', '==', this.authService.userDetails().uid
       )
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { AlertService } from '../_services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private alertService: AlertService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
       ])),
 
       password: new FormControl("", Validators.compose([
-        Validators.minLength(5),
+        Validators.minLength(6),
         Validators.required
       ]))
     });
@@ -56,12 +58,11 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.get('password').value
       }
     ).then(data => {
-      console.log(data);
       this.loading = false;
       this.router.navigate([this.returnUrl]);
     }).catch(error => {
       this.loading = false;
-      console.log(error);
+      this.alertService.error(error.message);
     })
   }
 

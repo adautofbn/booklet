@@ -3,6 +3,7 @@ import { AuthService } from '../_services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
+import { AlertService } from '../_services/alert.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -10,12 +11,11 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  errorMessage: string;
-  successMessage: string;
   signUpForm: FormGroup;
 
   constructor(
     private authService: AuthService,
+    private alertService: AlertService,
     private router: Router
   ) { }
 
@@ -57,13 +57,11 @@ export class SignUpComponent implements OnInit {
       .then(res => {
         console.log(res);
         firebase.auth().currentUser.updateProfile({displayName: this.signUpForm.get('username').value});
-        this.errorMessage = "";
-        this.successMessage = "Your account has been created";
+        this.alertService.success(res.message);
         this.router.navigateByUrl('/login');
       }, err => {
         console.log(err);
-        this.errorMessage = err.message;
-        this.successMessage = "";
+        this.alertService.error(err.message);
       })
   }
 

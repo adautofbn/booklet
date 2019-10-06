@@ -26,7 +26,7 @@
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Senha</mat-label>
-            <input matInput type="password" id="password" formControlName="password" placeholder="Senha" required />
+            <input matInput type="password" id="password" formControlName="password" placeholder="Senha (Mínimo: 6 caracteres)" required />
           </mat-form-field>
         </div>
       
@@ -44,7 +44,7 @@
         Voltar
       </button>
 
-      <button mat-raised-button color='accent' (click)="tryRegister()">
+      <button [disabled]="!signUpForm.valid" mat-raised-button color='accent' (click)="tryRegister()">
         Cadastrar
       </button>
     </mat-card-actions>
