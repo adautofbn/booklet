@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FirebaseService } from '../_services/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-plans',
@@ -11,13 +12,16 @@ export class AllPlansComponent implements OnInit {
   plan$: Observable<unknown[]>;
 
   constructor(
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private router: Router
   ) { 
     this.plan$ = this.firebaseService.retrieveDocs('plans');
   }
 
-  ngOnInit() {
+  ngOnInit() { }
 
+  navigateToPlanPage(plan) {
+    this.router.navigateByUrl('/plan/'+ plan.id);
   }
 
 }

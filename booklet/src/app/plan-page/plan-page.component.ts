@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FirebaseService } from '../_services/firebase.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-plan-page',
@@ -7,8 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanPageComponent implements OnInit {
 
-  constructor() { }
+  plan$: Observable<unknown>;
+  planId: string;
 
-  ngOnInit() {}
+  constructor(
+    private route: ActivatedRoute,
+    private firebaseService: FirebaseService
+  ) { 
+    this.planId = this.route.snapshot.paramMap.get('id');
+    this.plan$ = this.firebaseService.retrieveDocById('plans',this.planId);
+  }
 
+  ngOnInit() {
+    console.log(this.plan$);
+   }
 }

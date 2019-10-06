@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
 import { Observable } from 'rxjs';
 import { FirebaseService } from '../_services/firebase.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-plans',
@@ -13,7 +14,8 @@ export class MyPlansComponent implements OnInit {
 
   constructor(
     private firebaseService: FirebaseService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { 
     this.plan$ = this.firebaseService.retrieveFilteredDocs(
       'plans', 'uid', '==', this.authService.userDetails().uid
@@ -21,4 +23,8 @@ export class MyPlansComponent implements OnInit {
   }
 
   ngOnInit() { }
+
+  navigateToPlanPage(plan) {
+    this.router.navigateByUrl('/plan/'+plan.id);
+  }
 }

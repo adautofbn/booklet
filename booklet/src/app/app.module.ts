@@ -26,6 +26,7 @@ import { CreatePlanComponent } from './create-plan/create-plan.component';
 import { AllPlansComponent } from './all-plans/all-plans.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AlertService } from './_services/alert.service';
+import { PlanPageComponent } from './plan-page/plan-page.component';
 
 @NgModule({
   declarations: [AppComponent,
@@ -35,7 +36,8 @@ import { AlertService } from './_services/alert.service';
     MyPlansComponent,
     CreatePlanComponent,
     AllPlansComponent,
-    CalendarComponent],
+    CalendarComponent,
+    PlanPageComponent],
   entryComponents: [],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

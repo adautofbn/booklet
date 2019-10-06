@@ -1,3 +1,80 @@
-<p>
-  plan-page works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{'Plano de Aula'}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <mat-card *ngFor="let plan of plan$ | async">
+    <mat-card-header>
+      <b>{{plan.title}}</b>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <h3 mat-subheader>Professor</h3>
+            <mat-list-item>
+              <h4 mat-line>{{plan.teacher}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Escola</h3>
+            <mat-list-item>
+              <h4 mat-line>{{plan.school}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Série</h3>
+            <mat-list-item>
+              <h4 mat-line>{{plan.class}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Disciplina</h3>
+            <mat-list-item>
+              <h4 mat-line>{{plan.subject}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Palavra-chave</h3>
+            <mat-list-item>
+              <h4 mat-line>{{plan.keyword}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Objetivos</h3>
+            <mat-list-item>
+              <h4 mat-line>{{plan.goals}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Metodologia</h3>
+            <mat-list-item>
+              <h4 mat-line>{{plan.script}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Materiais</h3>
+            <mat-list-item>
+              <h4 mat-line>{{plan.materials}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Avaliação</h3>
+            <mat-list-item>
+              <h4 mat-line>{{plan.evaluation}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Duração</h3>
+            <mat-list-item>
+              <h4 mat-line>{{plan.duration}}</h4>
+            </mat-list-item>
+          </mat-list>
+    </mat-card-content>
+  </mat-card>
+</ion-content>

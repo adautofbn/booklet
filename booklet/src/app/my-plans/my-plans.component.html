@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <mat-card *ngFor="let plan of plan$ | async">
+  <mat-card *ngFor="let plan of plan$ | async" (click)="navigateToPlanPage(plan)">
     <mat-card-header>
       <b>{{plan.title}}</b>
     </mat-card-header>
