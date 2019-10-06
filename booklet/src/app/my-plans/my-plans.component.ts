@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, CollectionReference } from '@angular/fire/firestore';
-import { Plan } from '../_models/plan.model';
 import { AuthService } from '../_services/auth.service';
 import { Observable } from 'rxjs';
+import { FirebaseService } from '../_services/firebase.service';
 
 @Component({
   selector: 'app-my-plans',
@@ -10,16 +9,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./my-plans.component.scss'],
 })
 export class MyPlansComponent implements OnInit {
-  planCollectionRef: CollectionReference;
   plan$: Observable<unknown[]>;
 
   constructor(
-    private afs: AngularFirestore,
+    private firebaseService: FirebaseService,
     private authService: AuthService
-  ) { }
-
-  ngOnInit() {
-    this.plan$ = this.afs.collection('plans', 
-      ref => ref.where('teacher', '==', this.authService.userDetails().displayName)).valueChanges();
+  ) { 
+    this.plan$ = this.firebaseService.retrieveDocsFiltered(
+      'plans', 'uid', '==', this.authService.userDetails().uid
+      )
   }
+
+  ngOnInit() { }
 }

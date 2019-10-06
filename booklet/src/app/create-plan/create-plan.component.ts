@@ -94,7 +94,8 @@ export class CreatePlanComponent implements OnInit {
       materials:this.planForm.get('materials').value,
       evaluation:this.planForm.get('evaluation').value,
       duration:this.planForm.get('duration').value,
-      teacher: this.authService.userDetails().displayName
+      teacher: this.authService.userDetails().displayName,
+      uid: this.authService.userDetails().uid
     } as Plan
 
     this.planCollectionRef.add(plan);

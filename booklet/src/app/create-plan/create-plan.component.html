@@ -15,9 +15,16 @@
       <form fxFlexFill [formGroup]="planForm">
         <div fxFlexFill>
           <mat-form-field appearance="outline">
-            <mat-label>Título</mat-label>
+            <mat-label>Tema</mat-label>
             <input matInput type="title" formControlName="title" id="title" placeholder="Título"
               required />
+          </mat-form-field>
+        </div>
+
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Escola</mat-label>
+            <input matInput type="school" formControlName="school" id="scholl" placeholder="Escola" required />
           </mat-form-field>
         </div>
 
@@ -45,13 +52,6 @@
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
-            <mat-label>Escola</mat-label>
-            <input matInput type="school" formControlName="school" id="scholl" placeholder="Escola" required />
-          </mat-form-field>
-        </div>
-
-        <div fxFlexFill>
-          <mat-form-field appearance="outline">
             <mat-label>Palavra-chave</mat-label>
             <input matInput type="keyword" formControlName="keyword" id="keyword" placeholder="Palavra-chave"
               required />
@@ -67,7 +67,7 @@
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
-            <mat-label>Desenvolvimento</mat-label>
+            <mat-label>Metodologia</mat-label>
             <input matInput type="script" formControlName="script" id="script" placeholder="Desenvolvimento" required />
           </mat-form-field>
         </div>

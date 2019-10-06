@@ -1,61 +1,33 @@
-import * as firebase from 'firebase/app';
-import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators'
 
 export class FirebaseService {
-    private snapshotChangesSubscription: Observable<DocumentChangeAction<firebase.firestore.DocumentData>[]>;
-
     constructor(
-        private afs: AngularFirestore,
-        public afAuth: AngularFireAuth,
+        private afs: AngularFirestore
     ) { }
 
-    createTask(value) {
-        return new Promise<any>((resolve, reject) => {
-            let currentUser = firebase.auth().currentUser;
-            this.afs.collection('people').doc(currentUser.uid).collection('tasks').add({
-                title: value.title,
-                description: value.description,
-                image: value.image
-            })
-                .then(
-                    res => resolve(res),
-                    err => reject(err)
-                )
-        })
+    retrieveDocs(collectionName) {
+        const result = this.afs.collection(collectionName).snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            }))
+        );
+
+        return result;
     }
 
-    getTasks() {
-        return new Promise<any>((resolve, reject) => {
-            this.afAuth.user.subscribe(currentUser => {
-                if (currentUser) {
-                    this.snapshotChangesSubscription = this.afs.collection('people').doc(currentUser.uid).collection('tasks').snapshotChanges();
-                    resolve(this.snapshotChangesSubscription);
-                }
-            })
-        });
-    }
+    retrieveDocsFiltered(collectionName, field, operator, matcher) {
+        const result = this.afs.collection(collectionName,
+            ref => ref.where(field, operator, matcher)).snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data();
+                    const id = a.payload.doc.id;
+                    return { id, ...data };
+                }))
+            )
 
-    updateTask(taskKey, value) {
-        return new Promise<any>((resolve, reject) => {
-            let currentUser = firebase.auth().currentUser;
-            this.afs.collection('people').doc(currentUser.uid).collection('tasks').doc(taskKey).set(value)
-                .then(
-                    res => resolve(res),
-                    err => reject(err)
-                )
-        })
-    }
-
-    deleteTask(taskKey) {
-        return new Promise<any>((resolve, reject) => {
-            let currentUser = firebase.auth().currentUser;
-            this.afs.collection('people').doc(currentUser.uid).collection('tasks').doc(taskKey).delete()
-                .then(
-                    res => resolve(res),
-                    err => reject(err)
-                )
-        })
+        return result;
     }
 }

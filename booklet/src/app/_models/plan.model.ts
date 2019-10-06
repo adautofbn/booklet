@@ -1,4 +1,5 @@
 export interface Plan {
+    title: string;
     class: string;
     subject: string;
     school: string;
@@ -8,5 +9,6 @@ export interface Plan {
     materials: string;
     evaluation: string;
     duration: string;
-    teacher: string
+    teacher: string;
+    uid: string;
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Plan } from '../_models/plan.model';
 import { Observable } from 'rxjs';
+import { FirebaseService } from '../_services/firebase.service';
 
 @Component({
   selector: 'app-all-plans',
@@ -9,16 +8,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./all-plans.component.scss'],
 })
 export class AllPlansComponent implements OnInit {
-  planCollectionRef: AngularFirestoreCollection<Plan>;
-  plan$: Observable<Plan[]>;
+  plan$: Observable<unknown[]>;
 
   constructor(
-    private afs: AngularFirestore
-  ) { }
+    private firebaseService: FirebaseService
+  ) { 
+    this.plan$ = this.firebaseService.retrieveDocs('plans');
+  }
 
   ngOnInit() {
-    this.planCollectionRef = this.afs.collection('plans');
-    this.plan$ = this.planCollectionRef.valueChanges();
+
   }
 
 }
