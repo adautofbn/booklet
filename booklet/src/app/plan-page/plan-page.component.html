@@ -76,5 +76,10 @@
             </mat-list-item>
           </mat-list>
     </mat-card-content>
+    <mat-card-actions fxFlexFill align="center" *ngIf="isOwner(plan.uid)">
+      <button mat-raised-button routerLink="/home" color="accent" (click)="deletePlan()">
+        Excluir
+      </button>
+    </mat-card-actions>
   </mat-card>
 </ion-content>

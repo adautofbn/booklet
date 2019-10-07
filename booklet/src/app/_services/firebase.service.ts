@@ -42,4 +42,8 @@ export class FirebaseService {
             })))
         return result;
     }
+
+    deleteDoc(collectionName, id) {
+        this.afs.doc(collectionName + "/" + id).delete();
+    }
 }
