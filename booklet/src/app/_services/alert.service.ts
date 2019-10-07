@@ -29,7 +29,7 @@ export class AlertService {
     }
 
     public warn(message: string) {
-        this.showToast(message, 'accent');
+        this.showToast(message, 'secondary');
     }
 
     public info(message: string) {
