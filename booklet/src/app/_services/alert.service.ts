@@ -21,19 +21,19 @@ export class AlertService {
     }
 
     public success(message: string) {
-       this.showToast(message, 'error');
+       this.showToast(message, 'primary');
     }
 
     public error(message: string) {
-        this.showToast(message, 'dark');
+        this.showToast(message, 'danger');
     }
 
     public warn(message: string) {
-        this.showToast(message, 'warning');
+        this.showToast(message, 'accent');
     }
 
     public info(message: string) {
-        this.showToast(message, 'info');
+        this.showToast(message, 'dark');
     }
 
     public showToast(message: string, color: string) {
