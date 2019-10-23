@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -27,6 +27,11 @@ import { AllPlansComponent } from './all-plans/all-plans.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AlertService } from './_services/alert.service';
 import { PlanPageComponent } from './plan-page/plan-page.component';
+import { NgCalendarModule  } from 'ionic2-calendar';
+
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr)
 
 @NgModule({
   declarations: [AppComponent,
@@ -48,7 +53,8 @@ import { PlanPageComponent } from './plan-page/plan-page.component';
     MaterialModule,
     ReactiveFormsModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    NgCalendarModule
   ],
   providers: [
     StatusBar,
@@ -56,7 +62,8 @@ import { PlanPageComponent } from './plan-page/plan-page.component';
     FirebaseService,
     AuthService,
     AlertService,
-    AuthGuard
+    AuthGuard,
+    { provide: LOCALE_ID, useValue: 'pt' }
   ],
   bootstrap: [AppComponent]
 })
