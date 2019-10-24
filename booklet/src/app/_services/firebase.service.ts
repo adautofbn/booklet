@@ -1,10 +1,12 @@
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators'
 import * as firebase from 'firebase/app';
+import { AuthService } from './auth.service';
 
 export class FirebaseService {
     constructor(
-        private afs: AngularFirestore
+        private afs: AngularFirestore,
+        private authService: AuthService
     ) { }
 
     retrieveDocs(collectionName) {
@@ -22,6 +24,19 @@ export class FirebaseService {
     retrieveFilteredDocs(collectionName, field, operator, matcher) {
         const result = this.afs.collection(collectionName,
             ref => ref.where(field, operator, matcher)).snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data();
+                    const id = a.payload.doc.id;
+                    return { id, ...data };
+                }))
+            )
+
+        return result;
+    }
+
+    retrieveUserDocs(collectionName) {
+        const result = this.afs.collection(collectionName,
+            ref => ref.where('uid', '==', this.authService.userDetails().uid)).snapshotChanges().pipe(
                 map(actions => actions.map(a => {
                     const data = a.payload.doc.data();
                     const id = a.payload.doc.id;

@@ -22,10 +22,13 @@ export class PlanPageComponent implements OnInit {
     private alertService: AlertService
   ) { 
     this.planId = this.route.snapshot.paramMap.get('id');
-    this.plan$ = this.firebaseService.retrieveDocById('plans',this.planId);
   }
 
   ngOnInit() { }
+
+  ionViewWillEnter() {
+    this.plan$ = this.firebaseService.retrieveDocById('plans',this.planId);
+  }
 
   deletePlan() {
     this.firebaseService.deleteDoc('plans',this.planId);

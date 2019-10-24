@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { MatDialog } from '@angular/material';
+import { CreateEventDialogComponent } from '../_dialogs/create-event-dialog/create-event-dialog.component';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { CalendarEvent } from '../_models/calendar-event.model';
 
 @Component({
   selector: 'app-calendar',
@@ -7,8 +11,9 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent implements OnInit {
-  eventSource;
+  eventSource = [];
   viewTitle;
+  calendarEventCollectionRef: AngularFirestoreCollection<CalendarEvent>;
 
   isToday: boolean;
   calendar = {
@@ -43,17 +48,17 @@ export class CalendarComponent implements OnInit {
     }
   };
 
-  constructor(private navController: NavController) {
+  constructor(
+    private navController: NavController,
+    private dialog: MatDialog,
+    private afs: AngularFirestore
+  ) { }
 
+  ngOnInit() { 
+    this.calendarEventCollectionRef = this.afs.collection('events');
   }
 
-  ngOnInit() { }
-
-  loadEvents() {
-    this.eventSource = this.createRandomEvents();
-  }
-
-  firstLetterToUpper(string:String) {
+  firstLetterToUpper(string: String) {
     return string[0].toUpperCase() + string.slice(1);
   }
 
@@ -85,41 +90,19 @@ export class CalendarComponent implements OnInit {
     this.isToday = today.getTime() === event.getTime();
   }
 
-  createRandomEvents() {
-    var events = [];
-    for (var i = 0; i < 50; i += 1) {
-      var date = new Date();
-      var eventType = Math.floor(Math.random() * 2);
-      var startDay = Math.floor(Math.random() * 90) - 45;
-      var endDay = Math.floor(Math.random() * 2) + startDay;
-      var startTime;
-      var endTime;
-      if (eventType === 0) {
-        startTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + startDay));
-        if (endDay === startDay) {
-          endDay += 1;
-        }
-        endTime = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate() + endDay));
-        events.push({
-          title: 'All Day - ' + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: true
-        });
-      } else {
-        var startMinute = Math.floor(Math.random() * 24 * 60);
-        var endMinute = Math.floor(Math.random() * 180) + startMinute;
-        startTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + startDay, 0, date.getMinutes() + startMinute);
-        endTime = new Date(date.getFullYear(), date.getMonth(), date.getDate() + endDay, 0, date.getMinutes() + endMinute);
-        events.push({
-          title: 'Event - ' + i,
-          startTime: startTime,
-          endTime: endTime,
-          allDay: false
-        });
-      }
-    }
-    return events;
+  addEvent() {
+    const dialogRef = this.dialog.open(CreateEventDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      let events = this.eventSource;
+      events.push(result);
+      this.eventSource = [];
+      setTimeout(() => {
+        this.eventSource = events;
+      });
+
+      this.calendarEventCollectionRef.add(result);
+    })
   }
 
   onRangeChanged(ev) {

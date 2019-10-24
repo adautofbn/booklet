@@ -7,12 +7,14 @@
       {{viewTitle}}
     </ion-title>
   </ion-toolbar>
-  <ion-toolbar>
-    <button mat-raised-button [disabled]="isToday" (click)="today()">Hoje</button>
+  <ion-toolbar align="center">
+    <button mat-raised-button color="accent" [disabled]="isToday" (click)="today()">Hoje</button>
+    <div class="divider"></div>
     <button mat-raised-button (click)="changeMode('month')">Mensal</button>
+    <div class="divider"></div>
     <button mat-raised-button (click)="changeMode('week')">Semanal</button>
+    <div class="divider"></div>
     <button mat-raised-button (click)="changeMode('day')">Diário</button>
-    <button mat-raised-button (click)="loadEvents()">Load Events</button>
   </ion-toolbar>
 </ion-header>
 
@@ -24,3 +26,9 @@
     (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30">
   </calendar>
 </ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="secondary" (click)="addEvent()">
+    <ion-icon name="md-add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
