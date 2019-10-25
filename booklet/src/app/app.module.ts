@@ -32,6 +32,7 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { CreateEventDialogComponent } from './_dialogs/create-event-dialog/create-event-dialog.component';
+import { EventPageComponent } from './event-page/event-page.component';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -44,7 +45,8 @@ registerLocaleData(ptBr)
     AllPlansComponent,
     CalendarComponent,
     PlanPageComponent,
-    CreateEventDialogComponent],
+    CreateEventDialogComponent,
+    EventPageComponent],
   entryComponents: [CreateEventDialogComponent],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
