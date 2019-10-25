@@ -49,6 +49,17 @@ export class FirebaseService {
         return result;
     }
 
+    retrieveDocById(collectionName, id) {
+        const result = this.afs.collection(collectionName, 
+            ref => ref.where(firebase.firestore.FieldPath.documentId(), '==', id))
+            .snapshotChanges().pipe(map(actions => actions.map( a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            })))
+        return result;
+    }
+
     retrieveUserEvents() {
         const result = this.afs.collection('events',
             ref => ref.where('uid', '==', this.authService.userDetails().uid)).snapshotChanges().pipe(
@@ -65,14 +76,19 @@ export class FirebaseService {
         return result;
     }
 
-    retrieveDocById(collectionName, id) {
-        const result = this.afs.collection(collectionName, 
-            ref => ref.where(firebase.firestore.FieldPath.documentId(), '==', id))
-            .snapshotChanges().pipe(map(actions => actions.map( a => {
-                const data = a.payload.doc.data();
-                const id = a.payload.doc.id;
-                return { id, ...data };
-            })))
+    retrieveEventById(id) {
+        const result = this.afs.collection('events', 
+            ref => ref.where(firebase.firestore.FieldPath.documentId(), '==', id)).snapshotChanges().pipe(
+                map(changes => {
+                    return changes.map(a => {
+                        const data = a.payload.doc.data() as any;
+                        Object.keys(data).filter(key => data[key] instanceof Timestamp)
+                            .forEach(key => data[key] = data[key].toDate())
+                        const id = a.payload.doc.id;
+                        return {id, ...data};
+                    })
+                })   
+            )
         return result;
     }
 

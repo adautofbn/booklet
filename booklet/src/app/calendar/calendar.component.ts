@@ -6,6 +6,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { CalendarEvent } from '../_models/calendar-event.model';
 import { FirebaseService } from '../_services/firebase.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
@@ -55,7 +56,8 @@ export class CalendarComponent implements OnInit {
     private navController: NavController,
     private dialog: MatDialog,
     private afs: AngularFirestore,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    private router: Router
   ) { }
 
   ngOnInit() { }
@@ -76,6 +78,7 @@ export class CalendarComponent implements OnInit {
 
   onEventSelected(event) {
     //console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+    this.router.navigateByUrl('/event/'+event.id);
   }
 
   changeMode(mode) {
