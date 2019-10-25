@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material';
 import { CreateEventDialogComponent } from '../_dialogs/create-event-dialog/create-event-dialog.component';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { CalendarEvent } from '../_models/calendar-event.model';
+import { FirebaseService } from '../_services/firebase.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-calendar',
@@ -14,6 +16,7 @@ export class CalendarComponent implements OnInit {
   eventSource = [];
   viewTitle;
   calendarEventCollectionRef: AngularFirestoreCollection<CalendarEvent>;
+  event$: Observable<unknown[]>;
 
   isToday: boolean;
   calendar = {
@@ -51,11 +54,16 @@ export class CalendarComponent implements OnInit {
   constructor(
     private navController: NavController,
     private dialog: MatDialog,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private firebaseService: FirebaseService
   ) { }
 
-  ngOnInit() { 
+  ngOnInit() { }
+
+  ionViewWillEnter() {
     this.calendarEventCollectionRef = this.afs.collection('events');
+    this.event$ = this.firebaseService.retrieveUserEvents();
+    this.event$.subscribe(events => this.eventSource = events as CalendarEvent[]);
   }
 
   firstLetterToUpper(string: String) {
@@ -67,7 +75,7 @@ export class CalendarComponent implements OnInit {
   }
 
   onEventSelected(event) {
-    console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
+    //console.log('Event selected:' + event.startTime + '-' + event.endTime + ',' + event.title);
   }
 
   changeMode(mode) {
@@ -79,8 +87,8 @@ export class CalendarComponent implements OnInit {
   }
 
   onTimeSelected(ev) {
-    console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
-      (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+    //console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' +
+    //  (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
   }
 
   onCurrentDateChanged(event: Date) {
@@ -94,19 +102,12 @@ export class CalendarComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateEventDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      let events = this.eventSource;
-      events.push(result);
-      this.eventSource = [];
-      setTimeout(() => {
-        this.eventSource = events;
-      });
-
-      this.calendarEventCollectionRef.add(result);
+      this.calendarEventCollectionRef.add(result as CalendarEvent);
     })
   }
 
   onRangeChanged(ev) {
-    console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
+    //console.log('range changed: startTime: ' + ev.startTime + ', endTime: ' + ev.endTime);
   }
 
   markDisabled = (date: Date) => {
