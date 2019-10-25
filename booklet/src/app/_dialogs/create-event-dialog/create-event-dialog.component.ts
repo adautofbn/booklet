@@ -90,7 +90,7 @@ export class CreateEventDialogComponent implements OnInit {
       planTitle: this.dialogForm.get('plan').value.title,
       planId: this.dialogForm.get('plan').value.id,
       uid: this.authService.userDetails().uid
-    }
+    } as CalendarEvent;
 
     this.dialogRef.close(result);
   }
