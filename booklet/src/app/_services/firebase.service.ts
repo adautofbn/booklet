@@ -2,6 +2,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators'
 import * as firebase from 'firebase/app';
 import { AuthService } from './auth.service';
+import Timestamp = firestore.Timestamp;
+import { firestore } from 'firebase';
 
 export class FirebaseService {
     constructor(
@@ -44,6 +46,22 @@ export class FirebaseService {
                 }))
             )
 
+        return result;
+    }
+
+    retrieveUserEvents() {
+        const result = this.afs.collection('events',
+            ref => ref.where('uid', '==', this.authService.userDetails().uid)).snapshotChanges().pipe(
+                map(changes => {
+                    return changes.map(a => {
+                        const data = a.payload.doc.data() as any;
+                        Object.keys(data).filter(key => data[key] instanceof Timestamp)
+                            .forEach(key => data[key] = data[key].toDate())
+                        const id = a.payload.doc.id;
+                        return {id, ...data};
+                    })
+                })   
+            )
         return result;
     }
 

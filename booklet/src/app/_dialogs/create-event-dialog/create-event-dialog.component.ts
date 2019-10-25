@@ -4,6 +4,8 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { FirebaseService } from 'src/app/_services/firebase.service';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/_services/auth.service';
+import { CalendarEvent } from 'src/app/_models/calendar-event.model';
 
 @Component({
   selector: 'app-create-event-dialog',
@@ -29,7 +31,8 @@ export class CreateEventDialogComponent implements OnInit {
 
   constructor(
     private firebaseService: FirebaseService,
-    public dialogRef: MatDialogRef<CreateEventDialogComponent>
+    public dialogRef: MatDialogRef<CreateEventDialogComponent>,
+    private authService: AuthService
   ) { 
     this.plan$ = this.firebaseService.retrieveUserDocs('plans');
   }
@@ -85,7 +88,8 @@ export class CreateEventDialogComponent implements OnInit {
       startTime: this.getTime('start'),
       endTime: this.getTime('end'),
       planTitle: this.dialogForm.get('plan').value.title,
-      planId: this.dialogForm.get('plan').value.id
+      planId: this.dialogForm.get('plan').value.id,
+      uid: this.authService.userDetails().uid
     }
 
     this.dialogRef.close(result);
