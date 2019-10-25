@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      {{'Evento'}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <mat-card *ngFor="let event of event$ | async">
+    <mat-card-header>
+      <b>{{event.title}}</b>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Data/Hora de Início</h3>
+            <mat-list-item>
+              <h4 mat-line>{{event.startTime}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Data/Hora de Fim</h3>
+            <mat-list-item>
+              <h4 mat-line>{{event.endTime}}</h4>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+            <h3 mat-subheader>Plano de Aula</h3>
+            <mat-list-item>
+              <h4 mat-line>{{event.planTitle}}</h4>
+            </mat-list-item>
+          </mat-list>
+    </mat-card-content>
+    <mat-card-actions fxFlexFill align="center" *ngIf="isOwner(event.uid)">
+      <button mat-raised-button routerLink="/calendar" color="warn" (click)="deleteEvent()">
+        Excluir
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ion-content>

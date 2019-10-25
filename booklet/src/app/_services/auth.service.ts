@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import * as firebase from 'firebase/app';
-import { FirebaseService } from './firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
@@ -10,7 +9,6 @@ import { Router } from '@angular/router';
 export class AuthService {
 
     constructor(
-        private firebaseService: FirebaseService,
         public afAuth: AngularFireAuth,
         private router: Router
     ) { }

@@ -4,11 +4,31 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Meus planos de aula
+      {{viewTitle}}
     </ion-title>
+  </ion-toolbar>
+  <ion-toolbar align="center">
+    <button mat-raised-button color="accent" [disabled]="isToday" (click)="today()">Hoje</button>
+    <div class="divider"></div>
+    <button mat-raised-button (click)="changeMode('month')">Mensal</button>
+    <div class="divider"></div>
+    <button mat-raised-button (click)="changeMode('week')">Semanal</button>
+    <div class="divider"></div>
+    <button mat-raised-button (click)="changeMode('day')">Diário</button>
   </ion-toolbar>
 </ion-header>
 
-<p>
-  calendar works!
-</p>
+<ion-content>
+  <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate"
+    (onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)"
+    formatHourColumn="HH:mm" formatWeekTitle="MMMM yyyy, 'Semana' w" formatDayTitle="dd 'de' MMMM 'de' yyyy"
+    allDayLabel="Dia todo" noEventsLabel="Nenhum evento"
+    (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)" step="30">
+  </calendar>
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="secondary" (click)="addEvent()">
+    <ion-icon name="md-add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

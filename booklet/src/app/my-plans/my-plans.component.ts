@@ -16,13 +16,13 @@ export class MyPlansComponent implements OnInit {
     private firebaseService: FirebaseService,
     private authService: AuthService,
     private router: Router
-  ) { 
-    this.plan$ = this.firebaseService.retrieveFilteredDocs(
-      'plans', 'uid', '==', this.authService.userDetails().uid
-      )
-  }
+  ) { }
 
   ngOnInit() { }
+
+  ionViewWillEnter() {
+    this.plan$ = this.firebaseService.retrieveUserDocs('plans');
+  }
 
   navigateToPlanPage(plan) {
     this.router.navigateByUrl('/plan/'+plan.id);

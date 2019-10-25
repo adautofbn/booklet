@@ -14,11 +14,13 @@ export class AllPlansComponent implements OnInit {
   constructor(
     private firebaseService: FirebaseService,
     private router: Router
-  ) { 
-    this.plan$ = this.firebaseService.retrieveDocs('plans');
-  }
+  ) { }
 
   ngOnInit() { }
+
+  ionViewWillEnter() {
+    this.plan$ = this.firebaseService.retrieveDocs('plans');
+  }
 
   navigateToPlanPage(plan) {
     this.router.navigateByUrl('/plan/'+ plan.id);
