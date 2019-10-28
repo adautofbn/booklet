@@ -30,7 +30,7 @@
 
             <mat-divider></mat-divider>
             <h3 mat-subheader>Plano de Aula</h3>
-            <mat-list-item>
+            <mat-list-item (click)="onClickPlan(event.planId)">
               <h4 mat-line>{{event.planTitle}}</h4>
             </mat-list-item>
           </mat-list>
