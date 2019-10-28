@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../_services/alert.service';
 import { AuthService } from '../_services/auth.service';
 import { FirebaseService } from '../_services/firebase.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -19,7 +19,8 @@ export class EventPageComponent implements OnInit {
     private route: ActivatedRoute,
     private firebaseService: FirebaseService,
     private authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) { 
     this.eventId = this.route.snapshot.paramMap.get('id');
   }
@@ -37,6 +38,10 @@ export class EventPageComponent implements OnInit {
 
   isOwner(uid) {
     return uid === this.authService.userDetails().uid;
+  }
+
+  onClickPlan(id) {
+    this.router.navigateByUrl('/plan/' + id)
   }
 
 }
