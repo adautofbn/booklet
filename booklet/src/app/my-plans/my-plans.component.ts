@@ -14,17 +14,20 @@ export class MyPlansComponent implements OnInit {
 
   constructor(
     private firebaseService: FirebaseService,
-    private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit() { }
 
   ionViewWillEnter() {
-    this.plan$ = this.firebaseService.retrieveUserDocs('plans');
+    this.plan$ = this.firebaseService.retrieveLoggedUserDocs('plans');
   }
 
   navigateToPlanPage(plan) {
     this.router.navigateByUrl('/plan/'+plan.id);
+  }
+
+  navigateToTeacherPerfil(uid) {
+    this.router.navigateByUrl('/perfil/'+uid);
   }
 }

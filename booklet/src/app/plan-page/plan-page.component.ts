@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseService } from '../_services/firebase.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 import { AlertService } from '../_services/alert.service';
+import { User } from 'firebase';
 
 @Component({
   selector: 'app-plan-page',
@@ -19,7 +20,8 @@ export class PlanPageComponent implements OnInit {
     private route: ActivatedRoute,
     private firebaseService: FirebaseService,
     private authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private router: Router
   ) { 
     this.planId = this.route.snapshot.paramMap.get('id');
   }
@@ -37,5 +39,9 @@ export class PlanPageComponent implements OnInit {
 
   isOwner(uid) {
     return uid === this.authService.userDetails().uid;
+  }
+
+  navigateToTeacherPerfil(uid) {
+    this.router.navigateByUrl('/perfil/'+uid);
   }
 }

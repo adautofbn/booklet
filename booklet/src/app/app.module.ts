@@ -33,6 +33,7 @@ import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
 import { CreateEventDialogComponent } from './_dialogs/create-event-dialog/create-event-dialog.component';
 import { EventPageComponent } from './event-page/event-page.component';
+import { PerfilComponent } from './perfil/perfil.component';
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -46,7 +47,8 @@ registerLocaleData(ptBr)
     CalendarComponent,
     PlanPageComponent,
     CreateEventDialogComponent,
-    EventPageComponent],
+    EventPageComponent,
+    PerfilComponent],
   entryComponents: [CreateEventDialogComponent],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
