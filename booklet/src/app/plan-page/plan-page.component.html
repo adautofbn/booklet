@@ -15,69 +15,72 @@
       <b>{{plan.title}}</b>
     </mat-card-header>
     <mat-card-content>
-        <mat-list>
-            <h3 mat-subheader>Professor</h3>
-            <mat-list-item>
-              <h4 mat-line>{{plan.teacher}}</h4>
-            </mat-list-item>
+      <mat-list>
+        <h3 mat-subheader>Professor</h3>
+        <mat-list-item (click)="navigateToTeacherPerfil(plan.uid)">
+          <h4 mat-line>{{plan.teacher}}</h4>
+        </mat-list-item>
 
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Escola</h3>
-            <mat-list-item>
-              <h4 mat-line>{{plan.school}}</h4>
-            </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Escola</h3>
+        <mat-list-item>
+          <h4 mat-line>{{plan.school}}</h4>
+        </mat-list-item>
 
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Série</h3>
-            <mat-list-item>
-              <h4 mat-line>{{plan.class}}</h4>
-            </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Série</h3>
+        <mat-list-item>
+          <h4 mat-line>{{plan.class}}</h4>
+        </mat-list-item>
 
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Disciplina</h3>
-            <mat-list-item>
-              <h4 mat-line>{{plan.subject}}</h4>
-            </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Disciplina</h3>
+        <mat-list-item>
+          <h4 mat-line>{{plan.subject}}</h4>
+        </mat-list-item>
 
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Palavra-chave</h3>
-            <mat-list-item>
-              <h4 mat-line>{{plan.keyword}}</h4>
-            </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Palavra-chave</h3>
+        <mat-list-item>
+          <h4 mat-line>{{plan.keyword}}</h4>
+        </mat-list-item>
 
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Objetivos</h3>
-            <mat-list-item>
-              <h4 mat-line>{{plan.goals}}</h4>
-            </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Objetivos</h3>
+        <mat-list-item>
+          <h4 mat-line>{{plan.goals}}</h4>
+        </mat-list-item>
 
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Metodologia</h3>
-            <mat-list-item>
-              <h4 mat-line>{{plan.script}}</h4>
-            </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Metodologia</h3>
+        <mat-list-item>
+          <h4 mat-line>{{plan.script}}</h4>
+        </mat-list-item>
 
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Materiais</h3>
-            <mat-list-item>
-              <h4 mat-line>{{plan.materials}}</h4>
-            </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Materiais</h3>
+        <mat-list-item>
+          <h4 mat-line>{{plan.materials}}</h4>
+        </mat-list-item>
 
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Avaliação</h3>
-            <mat-list-item>
-              <h4 mat-line>{{plan.evaluation}}</h4>
-            </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Avaliação</h3>
+        <mat-list-item>
+          <h4 mat-line>{{plan.evaluation}}</h4>
+        </mat-list-item>
 
-            <mat-divider></mat-divider>
-            <h3 mat-subheader>Duração</h3>
-            <mat-list-item>
-              <h4 mat-line>{{plan.duration}}</h4>
-            </mat-list-item>
-          </mat-list>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Duração</h3>
+        <mat-list-item>
+          <h4 mat-line>{{plan.duration}}</h4>
+        </mat-list-item>
+      </mat-list>
     </mat-card-content>
-    <mat-card-actions fxFlexFill align="center" *ngIf="isOwner(plan.uid)">
-      <button mat-raised-button routerLink="/home" color="warn" (click)="deletePlan()">
+    <mat-card-actions fxFlexFill align="center">
+      <button mat-raised-button color="primary" (click)="createPDF(plan)">
+        Criar PDF
+      </button>
+      <button mat-raised-button routerLink="/home" color="warn" (click)="deletePlan()" *ngIf="isOwner(plan.uid)">
         Excluir
       </button>
     </mat-card-actions>

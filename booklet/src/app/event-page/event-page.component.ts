@@ -41,7 +41,11 @@ export class EventPageComponent implements OnInit {
   }
 
   onClickPlan(id) {
-    this.router.navigateByUrl('/plan/' + id)
+    this.router.navigateByUrl('/plan/' + id);
+  }
+
+  getMonth(month) {
+    return month + 1;
   }
 
 }
