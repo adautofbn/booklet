@@ -38,6 +38,7 @@ import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { EditPlanComponent } from './edit-plan/edit-plan.component';
 
 registerLocaleData(ptBr)
 
@@ -53,7 +54,8 @@ registerLocaleData(ptBr)
     PlanPageComponent,
     CreateEventDialogComponent,
     EventPageComponent,
-    PerfilComponent],
+    PerfilComponent,
+    EditPlanComponent],
   entryComponents: [CreateEventDialogComponent],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
