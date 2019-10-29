@@ -1,3 +1,48 @@
-<p>
-  perfil works!
-</p>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Página de perfil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <mat-card *ngFor="let user of user$ | async">
+    <mat-card-header>
+      <b>{{user.name}}</b>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <h4 mat-line>Email</h4>
+            <h1 mat-subheader>{{user.email}}</h1>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+  </mat-card>
+  
+  <mat-card *ngFor="let plan of plan$ | async" (click)="navigateToPlanPage(plan)">
+    <mat-card-header>
+      <b>{{plan.title}}</b>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <h4 mat-line>Série</h4>
+          <h1 mat-subheader>{{plan.class}}</h1>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        
+        <mat-list-item>
+          <h4 mat-line>Palavra Chave</h4>
+          <h1 mat-subheader>{{plan.keyword}}</h1>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+</ion-content>

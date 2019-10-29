@@ -36,7 +36,20 @@ export class FirebaseService {
         return result;
     }
 
-    retrieveUserDocs(collectionName) {
+    retrieveUserDocs(collectionName, uid) {
+        const result = this.afs.collection(collectionName,
+            ref => ref.where('uid', '==', uid)).snapshotChanges().pipe(
+                map(actions => actions.map(a => {
+                    const data = a.payload.doc.data();
+                    const id = a.payload.doc.id;
+                    return { id, ...data };
+                }))
+            )
+
+        return result;
+    }
+
+    retrieveLoggedUserDocs(collectionName) {
         const result = this.afs.collection(collectionName,
             ref => ref.where('uid', '==', this.authService.userDetails().uid)).snapshotChanges().pipe(
                 map(actions => actions.map(a => {

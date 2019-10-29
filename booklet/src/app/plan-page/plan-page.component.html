@@ -17,7 +17,7 @@
     <mat-card-content>
         <mat-list>
             <h3 mat-subheader>Professor</h3>
-            <mat-list-item>
+            <mat-list-item (click)="navigateToTeacherPerfil(plan.uid)">
               <h4 mat-line>{{plan.teacher}}</h4>
             </mat-list-item>
 

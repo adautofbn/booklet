@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { User } from '../_models/user.model';
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +12,8 @@ export class AuthService {
 
     constructor(
         public afAuth: AngularFireAuth,
-        private router: Router
+        private router: Router,
+        private afs: AngularFirestore
     ) { }
 
     doRegister(value) {
@@ -29,6 +32,18 @@ export class AuthService {
                     res => resolve(res),
                     err => reject(err))
         })
+    }
+
+    createUserData() {
+        const details = this.userDetails();
+        const user = {
+            name: details.displayName,
+            email: details.email,
+            uid: details.uid
+        }
+
+        this.afs.collection('users').doc(details.uid).set(user, {merge: true});
+
     }
 
     doLogout() {

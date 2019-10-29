@@ -18,6 +18,11 @@ export class AppComponent {
       icon: 'home'
     },
     {
+      title: 'Perfil',
+      url: '/perfil',
+      icon: 'md-person'
+    },
+    {
       title: 'Criar plano de aula',
       url: '/create-plan',
       icon: 'ios-create'
