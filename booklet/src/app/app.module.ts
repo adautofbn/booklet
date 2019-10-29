@@ -34,6 +34,11 @@ import ptBr from '@angular/common/locales/pt';
 import { CreateEventDialogComponent } from './_dialogs/create-event-dialog/create-event-dialog.component';
 import { EventPageComponent } from './event-page/event-page.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { File } from '@ionic-native/file/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+
 registerLocaleData(ptBr)
 
 @NgModule({
@@ -69,6 +74,10 @@ registerLocaleData(ptBr)
     AuthService,
     AlertService,
     AuthGuard,
+    File,
+    FileOpener,
+    AndroidPermissions,
+    Diagnostic,
     { provide: LOCALE_ID, useValue: 'pt' }
   ],
   bootstrap: [AppComponent]
