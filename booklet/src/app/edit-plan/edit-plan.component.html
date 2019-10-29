@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Editar plano de aula
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <mat-card *ngFor="let plan of plan$ | async">
+    <mat-card-content>
+      <form fxFlexFill [formGroup]="planForm">
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Tema</mat-label>
+            <input matInput type="title" formControlName="title" id="title" value="{{plan.title}}" />
+          </mat-form-field>
+        </div>
+
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Escola</mat-label>
+            <input matInput type="school" formControlName="school" id="scholl" value="{{plan.school}}" />
+          </mat-form-field>
+        </div>
+
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Série</mat-label>
+            <mat-select id="class" formControlName="class" #classSelect [(ngModel)]="plan.class">
+              <mat-option *ngFor="let class of classes" [value]="class">
+                {{class}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Disciplina</mat-label>
+            <mat-select id="subject" formControlName="subject" #classSelect [(ngModel)]="plan.subject">
+              <mat-option *ngFor="let subject of subjects" [value]="subject">
+                {{subject}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Palavra-chave</mat-label>
+            <input matInput type="keyword" formControlName="keyword" id="keyword"
+             value="{{plan.keyword}}"/>
+          </mat-form-field>
+        </div>
+
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Objetivos</mat-label>
+            <input matInput type="goals" formControlName="goals" id="goals" value="{{plan.goals}}" />
+          </mat-form-field>
+        </div>
+
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Metodologia</mat-label>
+            <input matInput type="script" formControlName="script" id="script" value="{{plan.script}}" />
+          </mat-form-field>
+        </div>
+
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Materiais</mat-label>
+            <input matInput type="materials" formControlName="materials" id="materials" value="{{plan.materials}}"
+             />
+          </mat-form-field>
+        </div>
+
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Avaliação</mat-label>
+            <input matInput type="evaluation" formControlName="evaluation" id="evaluation" value="{{plan.evaluation}}"
+             />
+          </mat-form-field>
+        </div>
+
+        <div fxFlexFill>
+          <mat-form-field appearance="outline">
+            <mat-label>Duração</mat-label>
+            <input matInput type="duration" formControlName="duration" id="duration" value="{{plan.duration}}" />
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-card-actions fxFlexFill align="center">
+      <button mat-raised-button color='accent' (click)="onSubmit()">
+        Atualizar
+      </button>
+      <button mat-raised-button (click)="onCancel()">
+        Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ion-content>

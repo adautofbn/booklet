@@ -59,6 +59,10 @@ export class PlanPageComponent implements OnInit {
     this.router.navigateByUrl('/perfil/' + uid);
   }
 
+  navigateToEditPage() {
+    this.router.navigateByUrl('/edit-plan/' + this.planId);
+  }
+
   createPDF(plan) {
     var pdfDef = {
       content: [
