@@ -16,21 +16,21 @@
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Tema</mat-label>
-            <input matInput type="title" formControlName="title" id="title" value="{{plan.title}}" required />
+            <input matInput type="title" formControlName="title" id="title" value="{{plan.title}}" />
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Escola</mat-label>
-            <input matInput type="school" formControlName="school" id="scholl" value="{{plan.school}}" required />
+            <input matInput type="school" formControlName="school" id="scholl" value="{{plan.school}}" />
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Série</mat-label>
-            <mat-select id="class" formControlName="class" #classSelect required>
+            <mat-select id="class" formControlName="class" #classSelect [(ngModel)]="plan.class">
               <mat-option *ngFor="let class of classes" [value]="class">
                 {{class}}
               </mat-option>
@@ -41,7 +41,7 @@
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Disciplina</mat-label>
-            <mat-select id="subject" formControlName="subject" #classSelect required>
+            <mat-select id="subject" formControlName="subject" #classSelect [(ngModel)]="plan.subject">
               <mat-option *ngFor="let subject of subjects" [value]="subject">
                 {{subject}}
               </mat-option>
@@ -53,21 +53,21 @@
           <mat-form-field appearance="outline">
             <mat-label>Palavra-chave</mat-label>
             <input matInput type="keyword" formControlName="keyword" id="keyword"
-              required value="{{plan.keyword}}"/>
+             value="{{plan.keyword}}"/>
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Objetivos</mat-label>
-            <input matInput type="goals" formControlName="goals" id="goals" value="{{plan.goals}}" required />
+            <input matInput type="goals" formControlName="goals" id="goals" value="{{plan.goals}}" />
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Metodologia</mat-label>
-            <input matInput type="script" formControlName="script" id="script" value="{{plan.script}}" required />
+            <input matInput type="script" formControlName="script" id="script" value="{{plan.script}}" />
           </mat-form-field>
         </div>
 
@@ -75,7 +75,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Materiais</mat-label>
             <input matInput type="materials" formControlName="materials" id="materials" value="{{plan.materials}}"
-              required />
+             />
           </mat-form-field>
         </div>
 
@@ -83,14 +83,14 @@
           <mat-form-field appearance="outline">
             <mat-label>Avaliação</mat-label>
             <input matInput type="evaluation" formControlName="evaluation" id="evaluation" value="{{plan.evaluation}}"
-              required />
+             />
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Duração</mat-label>
-            <input matInput type="duration" formControlName="duration" id="duration" value="{{plan.duration}}" required />
+            <input matInput type="duration" formControlName="duration" id="duration" value="{{plan.duration}}" />
           </mat-form-field>
         </div>
       </form>

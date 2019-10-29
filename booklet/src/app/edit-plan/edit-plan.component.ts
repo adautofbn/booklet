@@ -15,10 +15,11 @@ import { AuthService } from '../_services/auth.service';
 })
 export class EditPlanComponent implements OnInit {
 
-  plan$: Observable<unknown>;
+  plan$: Observable<unknown[]>;
   planId: string;
   planCollectionRef: AngularFirestoreCollection<Plan>;
   planForm: FormGroup;
+  planDetails: Plan;
 
   submitted = false;
 
@@ -44,69 +45,73 @@ export class EditPlanComponent implements OnInit {
 
     this.planForm = new FormGroup({
       title: new FormControl('', Validators.compose([
-        Validators.required
+        
       ])),
 
       class: new FormControl('', Validators.compose([
-        Validators.required
+        
       ])),
 
       subject: new FormControl('', Validators.compose([
-        Validators.required
+        
       ])),
 
       school: new FormControl('', Validators.compose([
-        Validators.required
+        
       ])),
 
       keyword: new FormControl('', Validators.compose([
-        Validators.required
+        
       ])),
 
       goals: new FormControl('', Validators.compose([
-        Validators.required
+        
       ])),
 
       script: new FormControl('', Validators.compose([
-        Validators.required
+        
       ])),
 
       materials: new FormControl('', Validators.compose([
-        Validators.required
+        
       ])),
 
       evaluation: new FormControl('', Validators.compose([
-        Validators.required
+        
       ])),
 
       duration: new FormControl('', Validators.compose([
-        Validators.required
+        
       ]))
     });
   }
 
-  ionViewWillEnter() {
+  ionViewWillEnter() { 
     this.plan$ = this.firebaseService.retrieveDocById('plans', this.planId);
+    this.plan$.forEach(plan => {
+      this.planDetails = plan.pop() as Plan;
+    });
   }
 
   onSubmit() {
     this.submitted = true;
 
     if(this.planForm.invalid) {
+      this.alertService.error('Erro ao validar campos do plano de aula');
       return;
     }
 
     var plan = {
-      title:this.planForm.get('title').value,
-      class:this.planForm.get('class').value,
-      subject:this.planForm.get('subject').value,
-      school:this.planForm.get('school').value,
-      keyword:this.planForm.get('keyword').value,
-      goals:this.planForm.get('goals').value,
-      script:this.planForm.get('script').value,
-      materials:this.planForm.get('materials').value,
-      evaluation:this.planForm.get('evaluation').value,
-      duration:this.planForm.get('duration').value,
+      title:this.planForm.get('title').value ? this.planForm.get('title').value : this.planDetails.title,
+      class:this.planForm.get('class').value ? this.planForm.get('class').value : this.planDetails.class,
+      subject:this.planForm.get('subject').value ? this.planForm.get('subject').value : this.planDetails.subject,
+      school:this.planForm.get('school').value ? this.planForm.get('school').value : this.planDetails.school,
+      keyword:this.planForm.get('keyword').value ? this.planForm.get('keyword').value : this.planDetails.keyword,
+      goals:this.planForm.get('goals').value ? this.planForm.get('goals').value : this.planDetails.goals,
+      script:this.planForm.get('script').value ? this.planForm.get('script').value : this.planDetails.script,
+      materials:this.planForm.get('materials').value ? this.planForm.get('materials').value : this.planDetails.materials,
+      evaluation:this.planForm.get('evaluation').value ? this.planForm.get('evaluation').value : this.planDetails.evaluation,
+      duration:this.planForm.get('duration').value ? this.planForm.get('duration').value : this.planDetails.duration,
       teacher: this.authService.userDetails().displayName,
       uid: this.authService.userDetails().uid
     } as Plan
