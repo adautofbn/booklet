@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild  } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseService } from '../_services/firebase.service';
@@ -7,6 +7,9 @@ import { Plan } from '../_models/plan.model';
 import { AlertService } from '../_services/alert.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { take } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-edit-plan',
@@ -35,9 +38,16 @@ export class EditPlanComponent implements OnInit {
     private alertService: AlertService,
     private authService: AuthService,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private ngZone: NgZone
   ) { 
     this.planId = this.route.snapshot.paramMap.get('id');
+  }
+
+  @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
+
+  triggerResize() {
+    this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
   ngOnInit() {

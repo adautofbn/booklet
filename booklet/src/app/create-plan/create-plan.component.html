@@ -16,14 +16,18 @@
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Tema</mat-label>
-            <input matInput type="title" formControlName="title" id="title" placeholder="Título" required />
+            <input matInput 
+            type="title" formControlName="title" id="title" placeholder="Título" 
+            required />
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Escola</mat-label>
-            <input matInput type="school" formControlName="school" id="scholl" placeholder="Escola" required />
+            <input matInput 
+            type="school" formControlName="school" id="scholl" placeholder="Escola" 
+            required />
           </mat-form-field>
         </div>
 
@@ -52,45 +56,58 @@
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Palavra-chave</mat-label>
-            <input matInput type="keyword" formControlName="keyword" id="keyword" placeholder="Palavra-chave"
-              required />
+            <input matInput 
+            type="keyword" formControlName="keyword" id="keyword" placeholder="Palavra-chave"
+            required />
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Objetivos</mat-label>
-            <textarea matInput type="goals" formControlName="goals" id="goals" placeholder="Objetivos" required ></textarea>
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" 
+            cdkAutosizeMinRows = "1" cdkAutosizeMaxRows = "6"
+            type="goals" formControlName="goals" id="goals" placeholder="Objetivos" 
+            required ></textarea>
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Metodologia</mat-label>
-            <textarea matInput type="script" formControlName="script" id="script" placeholder="Metodologia" required></textarea>
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" 
+            cdkAutosizeMinRows = "1" cdkAutosizeMaxRows = "6"
+            type="script" formControlName="script" id="script" placeholder="Metodologia" 
+            required></textarea>
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Materiais</mat-label>
-            <textarea matInput type="materials" formControlName="materials" id="materials" placeholder="Materiais"
-              required></textarea>
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" 
+            cdkAutosizeMinRows = "1" cdkAutosizeMaxRows = "6"
+            type="materials" formControlName="materials" id="materials" placeholder="Materiais"
+            required></textarea>
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Avaliação</mat-label>
-            <textarea matInput type="evaluation" formControlName="evaluation" id="evaluation" placeholder="Avaliação"
-              required></textarea>
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" 
+            cdkAutosizeMinRows = "1" cdkAutosizeMaxRows = "6"
+            type="evaluation" formControlName="evaluation" id="evaluation" placeholder="Avaliação"
+            required></textarea>
           </mat-form-field>
         </div>
 
         <div fxFlexFill>
           <mat-form-field appearance="outline">
             <mat-label>Duração</mat-label>
-            <input matInput type="duration" formControlName="duration" id="duration" placeholder="Duração" required />
+            <input matInput 
+            type="duration" formControlName="duration" id="duration" placeholder="Duração" 
+            required />
           </mat-form-field>
         </div>
       </form>

@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Plan } from '../_models/plan.model';
 import { AlertService } from '../_services/alert.service';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-plan',
@@ -29,8 +31,15 @@ export class CreatePlanComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
     private router: Router,
-    private afs: AngularFirestore
+    private afs: AngularFirestore,
+    private ngZone: NgZone
   ) { }
+
+  @ViewChild('autosize', {static: false}) autosize: CdkTextareaAutosize;
+
+  triggerResize() {
+    this.ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
+  }
 
   ngOnInit() {
     this.planCollectionRef = this.afs.collection('plans');
