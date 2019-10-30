@@ -12,18 +12,26 @@
 <ion-content>
   <mat-card *ngFor="let user of user$ | async">
     <mat-card-header>
-      <b>{{user.name}}</b>
+      <ion-icon slot="start" color="black" name="person"></ion-icon>
+      <div class="profile-name">
+        <b>{{user.name}}</b>
+      </div>
     </mat-card-header>
     <mat-card-content>
-        <mat-list>
-          <mat-list-item>
-            <h4 mat-line>Email</h4>
-            <h1 mat-subheader>{{user.email}}</h1>
-          </mat-list-item>
-        </mat-list>
-      </mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <h4 mat-line>Email</h4>
+          <h1 mat-subheader>{{user.email}}</h1>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
   </mat-card>
-  
+
+  <mat-divider></mat-divider>
+  <p align="center">
+    <b>Planos de Aula</b>
+  </p>
+
   <mat-card *ngFor="let plan of plan$ | async" (click)="navigateToPlanPage(plan)">
     <mat-card-header>
       <b>{{plan.title}}</b>
@@ -35,7 +43,7 @@
           <h1 mat-subheader>{{plan.class}}</h1>
         </mat-list-item>
         <mat-divider></mat-divider>
-        
+
         <mat-list-item>
           <h4 mat-line>Palavra Chave</h4>
           <h1 mat-subheader>{{plan.keyword}}</h1>
