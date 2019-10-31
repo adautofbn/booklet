@@ -34,7 +34,7 @@ export class CreateEventDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<CreateEventDialogComponent>,
     private authService: AuthService
   ) { 
-    this.plan$ = this.firebaseService.retrieveLoggedUserDocs('plans');
+    this.plan$ = this.firebaseService.retrieveDocs('plans');
   }
 
   ngOnInit() {
