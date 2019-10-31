@@ -34,7 +34,7 @@
         <mat-form-field appearence="outline">
           <mat-label>Data de início</mat-label>
           <input matInput [matDatepicker]="startPicker" placeholder="Escolha a data de ínicio"
-            formControlName="startDay" id="startDay" required>
+            formControlName="startDay" id="startDay" readonly required />
           <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
           <mat-datepicker #startPicker></mat-datepicker>
         </mat-form-field>
@@ -68,7 +68,7 @@
         <mat-form-field appearence="outline">
           <mat-label>Data de fim</mat-label>
           <input matInput [matDatepicker]="endPicker" placeholder="Escolha a data de ínicio" formControlName="endDay"
-            id="endDay" required>
+            id="endDay" readonly required />
           <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
           <mat-datepicker #endPicker></mat-datepicker>
         </mat-form-field>
@@ -103,7 +103,8 @@
           <mat-label>Plano de aula</mat-label>
           <mat-select id="plan" formControlName="plan" #planSelect required>
             <mat-option *ngFor="let plan of plan$ | async" [value]="plan">
-              {{plan.title}}
+              <span>{{plan.title}}</span> |
+              <small>Prof.: {{plan.teacher}}</small>
             </mat-option>
           </mat-select>
         </mat-form-field>
