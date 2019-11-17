@@ -105,7 +105,9 @@ export class CalendarComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateEventDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      this.calendarEventCollectionRef.add(result as CalendarEvent);
+      if(result.value != -1) {
+        this.calendarEventCollectionRef.add(result as CalendarEvent);
+      }
     })
   }
 
