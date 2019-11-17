@@ -38,7 +38,7 @@ Faça clone do repositório:
 https://github.com/adautofbn/booklet.git
 ```
 
-Na pasta da '/booklet' que foi criada, faça:
+Na pasta '/booklet' que foi criada, faça:
 
 ```
 npm install
