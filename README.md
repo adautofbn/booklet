@@ -58,6 +58,8 @@ Para executar a compilação do projeto para Android, continue no diretório e e
 ionic cordova build android
 ```
 
+Esse comando tem como resultado um arquivo no formato .apk que deve ser enviado para o smartphone Android e executado para realizar a instalação do aplicativo. 
+
 ## Hospedagem
 
 Para realizar a sua hospedagem da aplicação, é necessário criar um projeto no Firebase e alterar o arquivo 'environment.ts' com as variáveis de ambiente iniciadas no seu projeto Firebase.
