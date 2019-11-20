@@ -52,6 +52,12 @@ ionic serve
 
 Isso irá iniciar o aplicativo no seu navegador padrão e você poderá utilizá-lo, igualmente a se estivesse no seu smartphone.
 
+Para executar a compilação do projeto para Android, continue no diretório e execute:
+
+```
+ionic cordova build android
+```
+
 ## Hospedagem
 
 Para realizar a sua hospedagem da aplicação, é necessário criar um projeto no Firebase e alterar o arquivo 'environment.ts' com as variáveis de ambiente iniciadas no seu projeto Firebase.
